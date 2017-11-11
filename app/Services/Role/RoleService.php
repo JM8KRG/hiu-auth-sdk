@@ -18,7 +18,8 @@ class RoleService implements RoleServiceInterface
         $result = \DB::connection('mysql')->select('
             SELECT role_group
             FROM role_users
-            INNER JOIN role_groups
+             INNER JOIN role_groups
+              ON role_users.role_groups_id = role_groups.id
             WHERE uid = :uid', [
                 'uid' => $uid
         ]);

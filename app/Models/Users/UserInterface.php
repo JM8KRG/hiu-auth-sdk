@@ -41,15 +41,8 @@ interface UserInterface
     public function getRoles(): array;
 
     /**
-     * ユーザー切り替え前の教職員番号を取得する
-     * @return string|null
+     * 指定のロールを持っているか
+     * @return bool
      */
-    public function getBeforeEmployeeNumber(): ?string;
-
-    /**
-     * 学籍・教員番号からユーザーを生成する
-     * @param int $employeeNumber
-     * @return UserInterface|null
-     */
-    public static function findByEmployeeNumber(int $employeeNumber): ?UserInterface;
+    public function hasRole(string $role): bool;
 }

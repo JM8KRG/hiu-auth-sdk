@@ -107,4 +107,13 @@ abstract class UserBase implements UserInterface
     {
         return $this->roles;
     }
+
+    /**
+     * 指定のロールを持っているか
+     * @return bool
+     */
+    public function hasRole(string $role): bool
+    {
+        return in_array($role, $this->roles);
+    }
 }

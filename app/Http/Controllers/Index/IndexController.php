@@ -13,8 +13,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        print $this->user()->getMailAddress();
-
+        print $this->user()->getDisplayName();
 
         return view('welcome');
     }

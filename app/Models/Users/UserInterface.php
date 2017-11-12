@@ -45,4 +45,10 @@ interface UserInterface
      * @return bool
      */
     public function hasRole(string $role): bool;
+
+    /**
+     * ユーザー切り替えフラグを持っているか
+     * @return bool
+     */
+    public function hasRevertFlag(): bool;
 }

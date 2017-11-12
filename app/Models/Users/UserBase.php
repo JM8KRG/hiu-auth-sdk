@@ -28,6 +28,10 @@ abstract class UserBase implements UserInterface
      * @var array
      */
     protected $roles;
+    /**
+     * @var bool
+     */
+    protected $revertFlag;
 
     /**
      * 氏名を取得する
@@ -90,5 +94,14 @@ abstract class UserBase implements UserInterface
     public function hasRole(string $role): bool
     {
         return in_array($role, $this->roles);
+    }
+
+    /**
+     * ユーザー切り替えフラグを持っているか
+     * @return bool
+     */
+    public function hasRevertFlag(): bool
+    {
+        return $this->revertFlag;
     }
 }

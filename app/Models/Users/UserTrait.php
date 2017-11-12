@@ -2,7 +2,7 @@
 
 namespace HiuAuthSDK\Models\Users;
 
-use HiuAuthSDK\Services\Shibboleth\Shibboleth;
+use HiuAuthSDK\Services\Shibboleth\ShibbolethService;
 
 trait UserTrait
 {
@@ -11,6 +11,6 @@ trait UserTrait
      */
     public function user(): UserInterface
     {
-        return Shibboleth::getUser();
+        return ShibbolethService::getUser();
     }
 }

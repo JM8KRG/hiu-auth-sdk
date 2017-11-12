@@ -4,16 +4,19 @@ namespace HiuAuthSDK\Services\Shibboleth;
 
 use HiuAuthSDK\Exceptions\UserAuthException;
 use HiuAuthSDK\Models\Users\Faculty;
+use HiuAuthSDK\Models\Users\FacultyInterface;
 use HiuAuthSDK\Models\Users\Staff;
+use HiuAuthSDK\Models\Users\StaffInterface;
 use HiuAuthSDK\Models\Users\Student;
+use HiuAuthSDK\Models\Users\StudentInterface;
 use HiuAuthSDK\Models\Users\UserInterface;
 use HiuAuthSDK\Services\Role\RoleService;
 
-class Shibboleth
+class ShibbolethService
 {
     /**
      * ユーザーインスタンスを取得する
-     * @return mixed
+     * @return UserInterface|StudentInterface|FacultyInterface|StaffInterface
      * @throws UserAuthException
      */
     public static function getUserInstance()
@@ -54,7 +57,8 @@ class Shibboleth
      * @param string $employeeNumber
      * @param string $unscopedAffiliation
      * @param string $mail
-     * @return mixed
+     * @param bool $revertFlag
+     * @return UserInterface|StudentInterface|FacultyInterface|StaffInterface
      * @throws UserAuthException
      */
     public static function makeUserInstance(
@@ -62,21 +66,23 @@ class Shibboleth
         string $uid,
         string $employeeNumber,
         string $unscopedAffiliation,
-        string $mail
-    ) {
+        string $mail,
+        bool $revertFlag = false
+    )
+    {
         // ロールを取得
         $roles = RoleService::getRolesFromDatabaseByUID($uid, $unscopedAffiliation);
 
         // 所属からユーザーインスタンスを決定する
         switch ($unscopedAffiliation) {
             case 'student':
-                return new Student($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles);
+                return new Student($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles, $revertFlag);
                 break;
             case 'faculty':
-                return new Faculty($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles);
+                return new Faculty($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles, $revertFlag);
                 break;
             case 'staff':
-                return new Staff($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles);
+                return new Staff($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, $roles, $revertFlag);
                 break;
             default:
                 throw new UserAuthException($employeeNumber . 'は所属を確認できないため、システムを利用できません');

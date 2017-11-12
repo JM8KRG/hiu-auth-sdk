@@ -4,7 +4,8 @@ namespace HiuAuthSDK\Http\Middleware;
 
 use Closure;
 use HiuAuthSDK\Models\Users\UserInterface;
-use HiuAuthSDK\Services\Shibboleth\Shibboleth;
+use HiuAuthSDK\Services\Shibboleth\ShibbolethService;
+use Illuminate\Support\Facades\View;
 
 class ShibbolethMiddleware
 {
@@ -21,9 +22,18 @@ class ShibbolethMiddleware
         $accessUser = $session->get('access_user');
 
         if (!$accessUser instanceof UserInterface) {
-            $accessUser = Shibboleth::getUserInstance();
+            $accessUser = ShibbolethService::getUserInstance();
             $request->session()->put('access_user', $accessUser);
         }
+
+        // すべてのページで使いたい情報をセットする
+        View::share('middlewareDisplayName', $accessUser->getDisplayName());
+        View::share('middlewareUID', $accessUser->getUID());
+        View::share('middlewareEmployeeNumber', $accessUser->getEmployeeNumber());
+        View::share('middlewareUnscopedAffiliation', $accessUser->getUnscopedAffiliation());
+        View::share('middlewareMail', $accessUser->getMailAddress());
+        View::share('middlewareRevertFlag', $accessUser->hasRevertFlag());
+
         return $next($request);
     }
 }

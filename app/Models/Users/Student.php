@@ -29,7 +29,8 @@ class Student extends UserBase implements StudentInterface
         string $employeeNumber,
         string $unscopedAffiliation,
         string $mail,
-        array $roles)
+        array $roles,
+        bool $revertFlag)
     {
         // TODO 在籍フラグのチェック、個人ID、学年、クラス、入学年度、カリキュラム年度、学籍、在籍CD、所属組織CD、所属組織名
 
@@ -39,6 +40,7 @@ class Student extends UserBase implements StudentInterface
         $this->unscopedAffiliation = $unscopedAffiliation;
         $this->mail = $mail;
         $this->roles = $roles;
+        $this->revertFlag = $revertFlag;
     }
 
     /**

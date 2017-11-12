@@ -19,7 +19,8 @@ class Staff extends UserBase implements StaffInterface
         string $employeeNumber,
         string $unscopedAffiliation,
         string $mail,
-        array $roles)
+        array $roles,
+        bool $revertFlag)
     {
         $this->displayName = $displayName;
         $this->uid = $uid;
@@ -27,5 +28,6 @@ class Staff extends UserBase implements StaffInterface
         $this->unscopedAffiliation = $unscopedAffiliation;
         $this->mail = $mail;
         $this->roles = $roles;
+        $this->revertFlag = $revertFlag;
     }
 }

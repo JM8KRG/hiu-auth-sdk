@@ -63,7 +63,7 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ action('Debug\User\ImpersonateController@index') }}">
                         <i class="fa fa-user-secret" aria-hidden="true"></i>
                         ユーザー切り替え
                     </a>
@@ -75,7 +75,7 @@
                     {{--</a>--}}
                 {{--</li>--}}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ action('Debug\Cache\DeleteCacheController@index') }}">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         キャッシュ削除
                     </a>

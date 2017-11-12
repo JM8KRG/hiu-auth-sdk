@@ -4,7 +4,7 @@ namespace HiuAuthSDK\Http\Middleware;
 
 use Closure;
 use HiuAuthSDK\Models\Users\UserInterface;
-use HiuAuthSDK\Services\Shibboleth\Shibboleth;
+use HiuAuthSDK\Services\Shibboleth\ShibbolethService;
 use Illuminate\Support\Facades\View;
 
 class ShibbolethMiddleware
@@ -22,7 +22,7 @@ class ShibbolethMiddleware
         $accessUser = $session->get('access_user');
 
         if (!$accessUser instanceof UserInterface) {
-            $accessUser = Shibboleth::getUserInstance();
+            $accessUser = ShibbolethService::getUserInstance();
             $request->session()->put('access_user', $accessUser);
         }
 

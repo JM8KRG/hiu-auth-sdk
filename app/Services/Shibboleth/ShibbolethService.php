@@ -12,7 +12,7 @@ use HiuAuthSDK\Models\Users\StudentInterface;
 use HiuAuthSDK\Models\Users\UserInterface;
 use HiuAuthSDK\Services\Role\RoleService;
 
-class Shibboleth
+class ShibbolethService
 {
     /**
      * ユーザーインスタンスを取得する

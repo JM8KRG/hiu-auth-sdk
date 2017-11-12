@@ -2,7 +2,7 @@
 
 namespace HiuAuthSDK\Http\Controllers\Debug\User;
 
-use HiuAuthSDK\Services\Shibboleth\Shibboleth;
+use HiuAuthSDK\Services\Shibboleth\ShibbolethService;
 use Illuminate\Http\Request;
 use HiuAuthSDK\Http\Controllers\Controller;
 
@@ -43,7 +43,7 @@ class ImpersonateController extends Controller
         $mail = $request->get('mail');
 
         // ユーザーインスタンスを生成する
-        $accessUser = Shibboleth::makeUserInstance($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, true);
+        $accessUser = ShibbolethService::makeUserInstance($displayName, $uid, $employeeNumber, $unscopedAffiliation, $mail, true);
         // 既存のセッションを更新する
         $request->session()->put('access_user', $accessUser);
 
@@ -57,7 +57,7 @@ class ImpersonateController extends Controller
     public function revertUser()
     {
         // ユーザーインスタンスを取得する
-        $accessUser = Shibboleth::getUserInstance();
+        $accessUser = ShibbolethService::getUserInstance();
         // 既存のセッションを更新する
         \Session::put('access_user', $accessUser);
 

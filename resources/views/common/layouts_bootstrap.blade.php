@@ -68,12 +68,12 @@
                         ユーザー切り替え
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-bug" aria-hidden="true"></i>
-                        例外エラーログ取得
-                    </a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="#">--}}
+                        {{--<i class="fa fa-bug" aria-hidden="true"></i>--}}
+                        {{--例外エラーログ取得--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>

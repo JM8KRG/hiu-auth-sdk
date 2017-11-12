@@ -52,6 +52,9 @@
                 <small id="mailHelp" class="form-text text-muted">$_SERVER['mail'] = {{ $middlewareMail }}</small>
             </div>
             <button type="submit" class="btn btn-primary">切り替え</button>
+            <a href="{{ action('Debug\User\ImpersonateController@revertUser') }}" class="btn btn-outline-success">
+                デフォルトに戻す
+            </a>
         </form>
     </main>
 @endsection
